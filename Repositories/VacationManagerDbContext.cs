@@ -28,7 +28,7 @@ namespace VacationManager.Repositories
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
-             .UseSqlServer(@"Server=localhost;Database=VacationManagerDb;Trusted_Connection=True;");
+             .UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=VacationMangerDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

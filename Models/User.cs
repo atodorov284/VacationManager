@@ -27,8 +27,12 @@ namespace VacationManager.Models
         public string LastName { get; set; }
 
         [Required]
-        public int Role { get; set; } = 0;
+        public string Role { get; set; }
 
-        public string Team { get; set; }
+        public int PermissionLevel { get; set; }
+
+        public int? TeamId { get; set; }
+
+        public Team Team { get; set; }
     }
 }

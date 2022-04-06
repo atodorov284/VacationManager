@@ -1,20 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\Documents\\VacationManager\\VacationManager\\VacationManager.csproj": {}
+    "C:\\Users\\nadez\\OneDrive\\Работен плот\\IT Kariera\\Модул 13\\Exam Project\\VacationManager.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\Documents\\VacationManager\\VacationManager\\VacationManager.csproj": {
+    "C:\\Users\\nadez\\OneDrive\\Работен плот\\IT Kariera\\Модул 13\\Exam Project\\VacationManager.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Documents\\VacationManager\\VacationManager\\VacationManager.csproj",
+        "projectUniqueName": "C:\\Users\\nadez\\OneDrive\\Работен плот\\IT Kariera\\Модул 13\\Exam Project\\VacationManager.csproj",
         "projectName": "VacationManager",
-        "projectPath": "C:\\Users\\User\\Documents\\VacationManager\\VacationManager\\VacationManager.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Documents\\VacationManager\\VacationManager\\obj\\",
+        "projectPath": "C:\\Users\\nadez\\OneDrive\\Работен плот\\IT Kariera\\Модул 13\\Exam Project\\VacationManager.csproj",
+        "packagesPath": "C:\\Users\\nadez\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\nadez\\OneDrive\\Работен плот\\IT Kariera\\Модул 13\\Exam Project\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\nadez\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -83,7 +88,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.406\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }
