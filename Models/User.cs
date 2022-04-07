@@ -30,5 +30,7 @@ namespace VacationManager.Models
         public int Role { get; set; } = 0;
 
         public string Team { get; set; }
+
+        public int TeamId { get; set; }
     }
 }

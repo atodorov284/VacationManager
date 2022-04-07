@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using VacationManager.Helpers;
 using VacationManager.Models;
 using VacationManager.Repositories;
+using VacationManager.ViewModels.Teams;
 
 namespace VacationManager.Controllers
 {
@@ -14,16 +17,46 @@ namespace VacationManager.Controllers
     {
         private readonly VacationManagerDbContext _context;
 
-        public TeamsController(VacationManagerDbContext context)
+        public TeamsController()
         {
-            _context = context;
+            _context = new VacationManagerDbContext();
         }
 
         // GET: Teams
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Teams.ToListAsync());
+            var vacationManagerContext = _context.Teams.Include(t => t.Project).Include(t => t.Leader);
+            ViewBag.UserRole = UserCredentialsHelper.FindUserRole(_context, User);
+            return View(await vacationManagerContext.ToListAsync());
         }
+        [HttpPost]
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
+        {
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "Name" : "";
+            ViewData["DateSortParm"] = String.IsNullOrEmpty(sortOrder) ? "Project" : "";
+            ViewData["CurrentFilter"] = searchString;
+            var Team = from s in _context.Teams
+                       select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                Team = Team.Where(s => s.Name.Contains(searchString) || s.Project.Name.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "Name":
+                    Team = Team.OrderByDescending(s => s.Name);
+                    break;
+                case "FirstName":
+                    Team = Team.OrderBy(s => s.Project.Name);
+                    break;
+                default:
+                    Team = Team.OrderBy(s => s.Name);
+                    break;
+            }
+            return View(await Team.ToListAsync());
+        }
+
 
         // GET: Teams/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -34,18 +67,36 @@ namespace VacationManager.Controllers
             }
 
             var team = await _context.Teams
+                .Include(t => t.Project)
+                .Include(t => t.Leader)
                 .FirstOrDefaultAsync(m => m.TeamId == id);
+            List<string> developersNames = new List<string>();
             if (team == null)
             {
                 return NotFound();
             }
+            try
+            {
+                developersNames = team.Developers.Select(dev => dev.FirstName).ToList();
+            }
+            catch (SqlNullValueException)
+            {
+                developersNames.Add(new string("There is no assigned developers"));
+            }
+            if (developersNames != null)
+            {
+                ViewBag.DevelopersNames = developersNames;
+            }
 
             return View(team);
+
         }
 
         // GET: Teams/Create
         public IActionResult Create()
         {
+            ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "Name");
+            ViewData["TeamLeaderId"] = new SelectList(_context.Users, "Id", "FirstName");
             return View();
         }
 
@@ -54,7 +105,7 @@ namespace VacationManager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TeamId,Name")] Team team)
+        public async Task<IActionResult> Create([Bind("Name,ProjectId,TeamLeaderId,Id")] Team team)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +113,8 @@ namespace VacationManager.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "Name", team.ProjectId);
+            ViewData["TeamLeaderId"] = new SelectList(_context.Users, "Id", "FirstName", team.LeaderId);
             return View(team);
         }
 
@@ -78,6 +131,8 @@ namespace VacationManager.Controllers
             {
                 return NotFound();
             }
+            ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "Name", team.ProjectId);
+            ViewData["TeamLeaders"] = new SelectList(_context.Users, "Id", "FirstName", team.LeaderId);
             return View(team);
         }
 
@@ -86,7 +141,7 @@ namespace VacationManager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("TeamId,Name")] Team team)
+        public async Task<IActionResult> Edit(int id, [Bind("Name,ProjectId,TeamLeaderId,Id")] Team team)
         {
             if (id != team.TeamId)
             {
@@ -113,6 +168,8 @@ namespace VacationManager.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "Name", team.ProjectId);
+            ViewData["TeamLeaderId"] = new SelectList(_context.Users, "Id", "FirstName", team.LeaderId);
             return View(team);
         }
 
@@ -125,6 +182,8 @@ namespace VacationManager.Controllers
             }
 
             var team = await _context.Teams
+                .Include(t => t.Project)
+                .Include(t => t.Leader)
                 .FirstOrDefaultAsync(m => m.TeamId == id);
             if (team == null)
             {

@@ -29,5 +29,8 @@ namespace VacationManager.Models
 
         [Required]
         public User RequestingUser { get; set; }
+
+        [Required]
+        public int RequestingUserId { get; set; }
     }
 }
