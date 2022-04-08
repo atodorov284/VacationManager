@@ -1,0 +1,47 @@
+﻿@model VacationManager.Models.Team
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "_Layout";
+    IEnumerable<string> devIEnumerable = ViewData["Developers"] as IEnumerable<string>;
+    string developers = String.Join(" ", devIEnumerable);
+    IEnumerable<string> projectsIEnumerable = ViewData["Projects"] as IEnumerable<string>;
+    string projects = String.Join(" ", projectsIEnumerable);
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Team</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Leader)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Leader)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Developers)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => developers)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.WorkingProjects)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => projects)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.TeamId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
