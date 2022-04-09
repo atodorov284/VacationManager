@@ -1,0 +1,11 @@
+digraph "ViewModels/Home"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  compound=true
+  subgraph clusterdir_ba262fc08cc173e800721160247391b9 {
+    graph [ bgcolor="#edf0f7", pencolor="grey25", style="filled,dashed,", label="ViewModels", fontname="Helvetica", fontsize="10", URL="dir_ba262fc08cc173e800721160247391b9.html"]
+  dir_2997ffd9ca6c62e5594e9eb00d88a082 [shape=box, label="Home", style="filled,bold,", fillcolor="#edf0f7", color="grey25", URL="dir_2997ffd9ca6c62e5594e9eb00d88a082.html"];
+  }
+}

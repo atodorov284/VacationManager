@@ -1,0 +1,11 @@
+digraph "wwwroot/lib/jquery-validation"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  compound=true
+  subgraph clusterdir_111aacf516ae25a0b3dd7ff30d79c0a3 {
+    graph [ bgcolor="#edf0f7", pencolor="grey50", style="filled,dashed,", label="lib", fontname="Helvetica", fontsize="10", URL="dir_111aacf516ae25a0b3dd7ff30d79c0a3.html"]
+  dir_f8d5525ec0cb1d8d5e443fabd990f7de [shape=box, label="jquery-validation", style="filled,bold,", fillcolor="#edf0f7", color="grey25", URL="dir_f8d5525ec0cb1d8d5e443fabd990f7de.html"];
+  }
+}

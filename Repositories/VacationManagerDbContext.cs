@@ -7,9 +7,14 @@ using System.Threading.Tasks;
 
 namespace VacationManager.Repositories
 {
+    /// <summary>
+    /// Class initializing the Data Base Context.
+    /// </summary>
     public class VacationManagerDbContext : DbContext
     {
+
         public DbSet<User> Users { get; set; }
+
         public DbSet<Team> Teams { get; set; }
 
         public DbSet<Project> Projects { get; set; }

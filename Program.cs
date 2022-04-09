@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace VacationManager
 {
+    /// <summary>
+    /// Initializes the web pages.
+    /// </summary>
     public class Program
     {
         public static void Main(string[] args)

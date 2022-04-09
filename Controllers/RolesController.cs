@@ -14,6 +14,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace VacationManager.Controllers
 {
+    /// <summary>
+    /// Controls the User's Role logic.
+    /// </summary>
     public class RolesController : Controller
     {
 
@@ -24,7 +27,10 @@ namespace VacationManager.Controllers
             _context = context;
         }
 
-        // GET: Teams
+        /// <summary>
+        /// GET: Teams
+        /// </summary>
+        /// <returns></returns>
         public async Task<IActionResult> Index()
         {
             return View(await _context.Users.ToListAsync());

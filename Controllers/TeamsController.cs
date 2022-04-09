@@ -10,6 +10,9 @@ using VacationManager.Repositories;
 
 namespace VacationManager.Controllers
 {
+    /// <summary>
+    /// Controls the Team logic.
+    /// </summary>
     public class TeamsController : Controller
     {
         private readonly VacationManagerDbContext _context;
@@ -19,13 +22,20 @@ namespace VacationManager.Controllers
             _context = context;
         }
 
-        // GET: Teams
+        /// <summary>
+        /// GET: Teams
+        /// </summary>
+        /// <returns></returns>
         public async Task<IActionResult> Index()
         {
             return View(await _context.Teams.ToListAsync());
         }
 
-        // GET: Teams/Details/5
+        /// <summary>
+        /// GET: Teams/Details/5
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -45,16 +55,23 @@ namespace VacationManager.Controllers
             return View(team);
         }
 
-        // GET: Teams/Create
+        /// <summary>
+        /// GET: Teams/Create
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Create()
         {
             ViewData["Managers"] = _context.Users.Where(u => u.Role == 2).Select(u => u.Username).ToList();
             return View();
         }
 
-        // POST: Teams/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// POST: Teams/Create
+        /// To protect from overposting attacks, enable the specific properties you want to bind to.
+        /// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// </summary>
+        /// <param name="team"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("TeamId,Name,Leader")] Team team)
@@ -68,7 +85,11 @@ namespace VacationManager.Controllers
             return View(team);
         }
 
-        // GET: Teams/Edit/5
+        /// <summary>
+        /// GET: Teams/Edit/5
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -85,9 +106,14 @@ namespace VacationManager.Controllers
             return View(team);
         }
 
-        // POST: Teams/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// POST: Teams/Edit/5
+        /// To protect from overposting attacks, enable the specific properties you want to bind to.
+        /// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="team"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("TeamId,Name,Leader")] Team team)
@@ -120,7 +146,11 @@ namespace VacationManager.Controllers
             return View(team);
         }
 
-        // GET: Teams/Delete/5
+        /// <summary>
+        /// GET: Teams/Delete/5
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -138,7 +168,11 @@ namespace VacationManager.Controllers
             return View(team);
         }
 
-        // POST: Teams/Delete/5
+        /// <summary>
+        /// POST: Teams/Delete/5
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

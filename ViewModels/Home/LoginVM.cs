@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace VacationManager.ViewModels.Home
 {
+    /// <summary>
+    /// Class encapsulated user's input data.
+    /// </summary>
     public class UserCreateVM
     {
         [DisplayName("Username: ")]

@@ -7150,19 +7150,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\User\\.nuget\\packages\\": {}
+    "C:\\Users\\Computer\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\Documents\\VacationManager-master\\VacationManager.csproj",
+      "projectUniqueName": "D:\\Documents\\Workspace\\VacationManager\\VacationManager\\VacationManager.csproj",
       "projectName": "VacationManager",
-      "projectPath": "C:\\Users\\User\\Documents\\VacationManager-master\\VacationManager.csproj",
-      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\Documents\\VacationManager-master\\obj\\",
+      "projectPath": "D:\\Documents\\Workspace\\VacationManager\\VacationManager\\VacationManager.csproj",
+      "packagesPath": "C:\\Users\\Computer\\.nuget\\packages\\",
+      "outputPath": "D:\\Documents\\Workspace\\VacationManager\\VacationManager\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Computer\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

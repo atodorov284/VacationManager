@@ -1,0 +1,15 @@
+digraph "obj/Debug/net5.0/Razor"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  compound=true
+  subgraph clusterdir_c96e20fbeab981a929f0e70658ea5d87 {
+    graph [ bgcolor="#edf0f7", pencolor="grey50", style="filled,dashed,", label="net5.0", fontname="Helvetica", fontsize="10", URL="dir_c96e20fbeab981a929f0e70658ea5d87.html"]
+  subgraph clusterdir_9e9820e98869ec55203d7a678d52930d {
+    graph [ bgcolor="#edf0f7", pencolor="grey25", style="filled,bold,", label="", fontname="Helvetica", fontsize="10", URL="dir_9e9820e98869ec55203d7a678d52930d.html"]
+    dir_9e9820e98869ec55203d7a678d52930d [shape=plaintext, label="Razor"];
+  dir_353ed0f21ce43f3df67b554e39a9b9f1 [shape=box, label="Views", style="filled,", fillcolor="#a2b4d6", color="grey25", URL="dir_353ed0f21ce43f3df67b554e39a9b9f1.html"];
+  }
+  }
+}

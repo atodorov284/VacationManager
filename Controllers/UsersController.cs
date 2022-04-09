@@ -10,6 +10,9 @@ using VacationManager.Repositories;
 
 namespace VacationManager.Controllers
 {
+    /// <summary>
+    /// Controlls the user logic.
+    /// </summary>
     public class UsersController : Controller
     {
         private readonly VacationManagerDbContext _context;
@@ -19,13 +22,21 @@ namespace VacationManager.Controllers
             _context = context;
         }
 
-        // GET: Users
+        /// <summary>
+        /// GET: Users
+        /// </summary>
+        /// <returns></returns>
         public async Task<IActionResult> Index()
         {
             return View(await _context.Users.ToListAsync());
         }
 
-        // GET: Users/Details/5
+
+        /// <summary>
+        /// GET: Users/Details/5
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -44,16 +55,23 @@ namespace VacationManager.Controllers
             return View(user);
         }
 
-        // GET: Users/Create
+        /// <summary>
+        /// GET: Users/Create
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Create()
         {
             ViewData["Teams"] = _context.Teams;
             return View();
         }
 
-        // POST: Users/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// POST: Users/Create
+        /// To protect from overposting attacks, enable the specific properties you want to bind to.
+        /// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("UserId,Username,Password,FirstName,LastName,Role,Team")] User user)
@@ -67,7 +85,11 @@ namespace VacationManager.Controllers
             return View(user);
         }
 
-        // GET: Users/Edit/5
+        /// <summary>
+        /// GET: Users/Edit/5
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -84,9 +106,14 @@ namespace VacationManager.Controllers
             return View(user);
         }
 
-        // POST: Users/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// POST: Users/Edit/5
+        /// To protect from overposting attacks, enable the specific properties you want to bind to.
+        /// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="user"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("UserId,Username,Password,FirstName,LastName,Role,Team,Project")] User user)
@@ -119,7 +146,11 @@ namespace VacationManager.Controllers
             return View(user);
         }
 
-        // GET: Users/Delete/5
+        /// <summary>
+        /// GET: Users/Delete/5
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -137,7 +168,11 @@ namespace VacationManager.Controllers
             return View(user);
         }
 
-        // POST: Users/Delete/5
+        /// <summary>
+        /// POST: Users/Delete/5
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -148,6 +183,11 @@ namespace VacationManager.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        /// <summary>
+        /// Exits the current user.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         private bool UserExists(int id)
         {
             return _context.Users.Any(e => e.UserId == id);

@@ -11,6 +11,9 @@ using VacationManager.Repositories;
 
 namespace VacationManager.Controllers
 {
+    /// <summary>
+    /// Controls the Vacation logic.
+    /// </summary>
     public class TimeOffsController : Controller
     {
         private readonly VacationManagerDbContext _context;
@@ -20,7 +23,10 @@ namespace VacationManager.Controllers
             _context = context;
         }
 
-        // GET: TimeOffs
+        /// <summary>
+        /// GET: TimeOffs
+        /// </summary>
+        /// <returns></returns>
         public async Task<IActionResult> Index()
         {
             ViewData["Teams"] = _context.Teams;
@@ -28,7 +34,11 @@ namespace VacationManager.Controllers
             return View(await _context.TimeOffs.ToListAsync());
         }
 
-        // GET: TimeOffs/Details/5
+        /// <summary>
+        /// GET: TimeOffs/Details/5
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -46,15 +56,22 @@ namespace VacationManager.Controllers
             return View(timeOff);
         }
 
-        // GET: TimeOffs/Create
+        /// <summary>
+        /// GET: TimeOffs/Create
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: TimeOffs/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// POST: TimeOffs/Create
+        /// To protect from overposting attacks, enable the specific properties you want to bind to.
+        /// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// </summary>
+        /// <param name="timeOff"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("TimeOffId,From,To,HalfDay,Type,Approved,RequestingUser,CreatedOn")] TimeOff timeOff)
@@ -69,7 +86,11 @@ namespace VacationManager.Controllers
             return View(timeOff);
         }
 
-        // GET: TimeOffs/Edit/5
+        /// <summary>
+        /// GET: TimeOffs/Edit/5
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -85,9 +106,14 @@ namespace VacationManager.Controllers
             return View(timeOff);
         }
 
-        // POST: TimeOffs/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// POST: TimeOffs/Edit/5
+        /// To protect from overposting attacks, enable the specific properties you want to bind to.
+        /// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="timeOff"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("TimeOffId,From,To,CreatedOn,HalfDay,Type,Approved,RequestingUser")] TimeOff timeOff)
@@ -120,7 +146,11 @@ namespace VacationManager.Controllers
             return View(timeOff);
         }
 
-        // GET: TimeOffs/Delete/5
+        /// <summary>
+        /// GET: TimeOffs/Delete/5
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -138,7 +168,11 @@ namespace VacationManager.Controllers
             return View(timeOff);
         }
 
-        // POST: TimeOffs/Delete/5
+        /// <summary>
+        /// POST: TimeOffs/Delete/5
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
