@@ -1,0 +1,84 @@
+﻿@model VacationManager.Models.User
+@using VacationManager.ExtentionMethods;
+
+@{ ViewData["Title"] = "Edit";
+    Layout = "_Layout";
+    IEnumerable<Team> teams = ViewData["Teams"] as IEnumerable<Team>;
+    User loggedUser = this.ViewContext.HttpContext.Session.GetObject<User>("loggedUser"); }
+
+@if (loggedUser.Role == 3)
+{
+    <h1>Edit</h1>
+
+                    <h4>User</h4>
+                                    <hr />
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <form asp-action="Edit">
+                                                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                                                <input type="hidden" asp-for="UserId" />
+                                                                <div class="form-group">
+                                                                    <label asp-for="Username" class="control-label"></label>
+                                                                    <input asp-for="Username" class="form-control" />
+                                                                    <span asp-validation-for="Username" class="text-danger"></span>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label asp-for="FirstName" class="control-label"></label>
+                                                                    <input asp-for="FirstName" class="form-control" />
+                                                                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label asp-for="LastName" class="control-label"></label>
+                                                                    <input asp-for="LastName" class="form-control" />
+                                                                    <span asp-validation-for="LastName" class="text-danger"></span>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label asp-for="Password" class="control-label"></label>
+                                                                    <input asp-for="Password" class="form-control" />
+                                                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label asp-for="Role" class="control-label"></label>
+                                                                    <select id="Role" name="Role">
+                                                                        <option value=0>Unassigned</option>
+                                                                        <option value=1>Developer</option>
+                                                                        <option value=2>Manager</option>
+                                                                        <option value=3>CEO</option>
+                                                                    </select>
+                                                                    <span asp-validation-for="Role" class="text-danger"></span>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label asp-for="Team" class="control-label"></label>
+                                                                    <select id="Team" name="Team">
+                                                                        <option value="Unassigned">Unassigned</option>
+                                                                        @if (teams != null)
+                                                                        {
+                                                                    @if (teams.Count() > 0)
+                                                                    {
+                                                                    @foreach (var team in teams)
+                                                                    {
+                                                                    <option value=@team.Name>@team.Name</option>}}}
+
+                                                                    </select>
+                                                                    <span asp-validation-for="Team" class="text-danger"></span>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <input type="submit" value="Save" class="btn btn-primary" />
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+
+                                                                    <div>
+                                                                        <a asp-action="Index">Back to List</a>
+                                                                    </div>
+            }
+            else
+            {
+                <p>Forbidden</p>
+            }
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
