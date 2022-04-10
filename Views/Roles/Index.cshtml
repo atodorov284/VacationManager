@@ -8,7 +8,7 @@
 <h1>Roles</h1>
 <div>
     <h4>CEO</h4>
-    <table class="table">
+    <table class="table-all bordered centered">
         <thead>
             <tr>
                 <th>
@@ -17,7 +17,6 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Role)
                 </th>
-                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -38,7 +37,7 @@
     </table>
 
     <h4>Managers</h4>
-    <table class="table">
+    <table class="table-all bordered centered">
         <thead>
             <tr>
                 <th>
@@ -47,29 +46,26 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Role)
                 </th>
-                <th></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var user in Model)
             {@if (user.Role == 2)
                 {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => user.Username)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => user.Role)
-                        </td>
-                    </tr>
-                }
-        }
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => user.Username)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => user.Role)
+        </td>
+    </tr>                }}
         </tbody>
     </table>
 
 
     <h4>Developers</h4>
-    <table class="table">
+    <table class="table-all bordered centered">
         <thead>
             <tr>
                 <th>
@@ -78,7 +74,6 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Role)
                 </th>
-                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -99,7 +94,7 @@
     </table>
 
     <h4>Unassigned</h4>
-    <table class="table">
+    <table class="table-all bordered centered">
         <thead>
             <tr>
                 <th>
@@ -108,7 +103,6 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Role)
                 </th>
-                <th></th>
             </tr>
         </thead>
         <tbody>

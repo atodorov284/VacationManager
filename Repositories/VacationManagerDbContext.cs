@@ -88,6 +88,46 @@ namespace VacationManager.Repositories
                     LastName = "Istrator",
                     Role = 3
                 });
+            modelBuilder.Entity<User>().HasData(
+                new User()
+                {
+                    UserId = 2,
+                    Username = "Manager",
+                    Password = "Manager",
+                    FirstName = "Manager",
+                    LastName = "Manager",
+                    Role = 2
+                });
+            modelBuilder.Entity<User>().HasData(
+                new User()
+                {
+                    UserId = 3,
+                    Username = "atodorov",
+                    Password = "atodorov",
+                    FirstName = "Aleksandar",
+                    LastName = "Todorov",
+                    Role = 1
+                });
+            modelBuilder.Entity<User>().HasData(
+                new User()
+                {
+                    UserId = 4,
+                    Username = "gdimitrova",
+                    Password = "gdimitrova",
+                    FirstName = "Gabriela",
+                    LastName = "Dimitrova",
+                    Role = 1
+                });
+            modelBuilder.Entity<User>().HasData(
+                new User()
+                {
+                    UserId = 5,
+                    Username = "nsavcheva",
+                    Password = "nsavcheva",
+                    FirstName = "Nadezhda",
+                    LastName = "Savcheva",
+                    Role = 1
+                });
         }
     }
 }

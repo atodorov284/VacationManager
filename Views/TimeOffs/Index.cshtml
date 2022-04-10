@@ -1,22 +1,20 @@
 ﻿@model IEnumerable<VacationManager.Models.TimeOff>
 @using VacationManager.ExtentionMethods;
 
-@{
-    ViewData["Title"] = "Index";
-    Layout = "_Layout";
-    User loggedUser = this.ViewContext.HttpContext.Session.GetObject<User>("loggedUser");
-    IEnumerable<Team> teams = ViewData["Teams"] as IEnumerable<Team>;
-    IEnumerable<User> users = ViewData["Users"] as IEnumerable<User>;
-    List<string> teamsManaged = teams.Where(team => team.Leader == loggedUser.Username).Select(team => team.Name).ToList();
-    List<string> usersFromTeamsManaged = users.Where(u => teamsManaged.Contains(u.Team)).Select(user => user.Username).ToList();
-}
+@{ ViewData["Title"] = "Index";
+                Layout = "_Layout";
+                User loggedUser = this.ViewContext.HttpContext.Session.GetObject<User>("loggedUser");
+                IEnumerable<Team> teams = ViewData["Teams"] as IEnumerable<Team>;
+                IEnumerable<User> users = ViewData["Users"] as IEnumerable<User>;
+                List<string> teamsManaged = teams.Where(team => team.Leader == loggedUser.Username).Select(team => team.Name).ToList();
+                List<string> usersFromTeamsManaged = users.Where(u => teamsManaged.Contains(u.Team)).Select(user => user.Username).ToList(); }
 
-<h1>Index</h1>
-
-<p>
+<p class="btn-primary">
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+
+<h1>Index</h1>
+<table class="table-all bordered centered">
     <thead>
         <tr>
             <th>
@@ -47,108 +45,99 @@
         @if (loggedUser.Role == 3)
         {
 
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.From)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.To)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.HalfDay)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CreatedOn)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.RequestingUser)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Type)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Approved)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.TimeOffId">Edit</a> |
-                        <a asp-action="Delete" asp-route-id="@item.TimeOffId">Delete</a>
-                    </td>
-                </tr>
-            }
-
-        }
+@foreach (var item in Model)
+{
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.From)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.To)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.HalfDay)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CreatedOn)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.RequestingUser)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Type)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Approved)
+    </td>
+    <td>
+        <a asp-action="Edit" asp-route-id="@item.TimeOffId">Edit</a>
+        <a asp-action="Delete" asp-route-id="@item.TimeOffId">Delete</a>
+    </td>
+</tr>}}
 
         @if (loggedUser.Role == 2)
         {
-            @foreach (var item in Model.Where(item => usersFromTeamsManaged.Contains(item.RequestingUser)).ToList())
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.From)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.To)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.HalfDay)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CreatedOn)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.RequestingUser)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Type)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Approved)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.TimeOffId">Edit</a> |
-                        <a asp-action="Delete" asp-route-id="@item.TimeOffId">Delete</a>
-                    </td>
-                </tr>
-            }
-
-
-        }
+@foreach (var item in Model.Where(item => usersFromTeamsManaged.Contains(item.RequestingUser)).ToList())
+{
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.From)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.To)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.HalfDay)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CreatedOn)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.RequestingUser)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Type)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Approved)
+    </td>
+    <td>
+        <a asp-action="Edit" asp-route-id="@item.TimeOffId">Edit</a> |
+        <a asp-action="Delete" asp-route-id="@item.TimeOffId">Delete</a>
+    </td>
+</tr>}}
 
         @if (loggedUser.Role == 1)
         {
-            @foreach (var item in Model.Where(u => u.RequestingUser == loggedUser.Username).ToList())
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.From)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.To)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.HalfDay)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CreatedOn)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.RequestingUser)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Type)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Approved)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.TimeOffId">Edit</a> |
-                        <a asp-action="Delete" asp-route-id="@item.TimeOffId">Delete</a>
-                    </td>
-                </tr>
-            }
-        }
+@foreach (var item in Model.Where(u => u.RequestingUser == loggedUser.Username).ToList())
+{
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.From)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.To)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.HalfDay)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CreatedOn)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.RequestingUser)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Type)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Approved)
+    </td>
+    <td>
+        <a asp-action="Edit" asp-route-id="@item.TimeOffId">Edit</a> |
+        <a asp-action="Delete" asp-route-id="@item.TimeOffId">Delete</a>
+    </td>
+</tr>}}
     </tbody>
 </table>
 

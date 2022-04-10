@@ -11,9 +11,7 @@
     <h1>Create</h1>
 
                     <h4>User</h4>
-                                    <hr />
-                                                    <div class="row">
-                                                        <div class="col-md-4">
+                                                        <div class="form-container">
                                                             <form asp-action="Create">
                                                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                                                 <div class="form-group">
@@ -67,16 +65,15 @@
                                                                 </div>
                                                             </form>
                                                         </div>
-                                                    </div>
 
-                                                                    <div>
-                                                                        <a asp-action="Index">Back to List</a>
-                                                                    </div>
                                                                 }
-            else
+else
             {
-                <p>Forbidden</p>
+                <p class="welcomeMsg">Forbidden</p>
             }
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
 
 
 @section Scripts {

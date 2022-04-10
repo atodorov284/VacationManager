@@ -1,15 +1,16 @@
 ﻿@model VacationManager.Models.User
+@using VacationManager.ExtentionMethods;
 
 @{
     ViewData["Title"] = "Details";
     Layout = "_Layout";
+    User loggedUser = this.ViewContext.HttpContext.Session.GetObject<User>("loggedUser");
 }
 
 <h1>Details</h1>
 
 <div>
     <h4>User</h4>
-    <hr />
     <dl class="row">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Username)
@@ -17,12 +18,15 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Username)
         </dd>
-        <dt class="col-sm-2">
+        @if(loggedUser.Role == 3)
+            {
+            <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Password)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Password)
         </dd>
+            }
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.FirstName)
         </dt>
@@ -50,5 +54,5 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a class="btn-primary" asp-action="Index">Back to List</a>
 </div>

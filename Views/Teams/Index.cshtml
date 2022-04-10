@@ -7,16 +7,20 @@
     User loggedUser = this.ViewContext.HttpContext.Session.GetObject<User>("loggedUser");
 }
 
-<h1>Index</h1>
 
-<p>
-    @if (loggedUser.Role == 3)
-    {
-        <a asp-action="Create">Create New</a>
-    }
+
+@if (loggedUser.Role == 3)
+{
+<p class="btn-primary">
+    
+    <a asp-action="Create">Create New</a>
 
 </p>
-<table class="table">
+}
+
+<h1>Index</h1>
+
+<table class="table-all bordered centered">
     <thead>
         <tr>
             <th>
@@ -39,7 +43,7 @@
                     @Html.DisplayFor(modelItem => item.Leader)
                 </td>
                 <td>
-                    <a asp-action="Details" asp-route-id="@item.TeamId">Details</a> |
+                    <a asp-action="Details" asp-route-id="@item.TeamId">Details</a>
                     @if (loggedUser.Role == 3)
                     {
                         <a asp-action="Edit" asp-route-id="@item.TeamId">Edit</a>

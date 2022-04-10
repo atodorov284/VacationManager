@@ -111,7 +111,14 @@ namespace VacationManager.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "UserId", "FirstName", "LastName", "Password", "Project", "Role", "Team", "TeamId", "Username" },
-                values: new object[] { 1, "Admin", "Istrator", "CEOpass", null, 3, null, null, "CEO" });
+                values: new object[,]
+                {
+                    { 1, "Admin", "Istrator", "CEOpass", null, 3, null, null, "CEO" },
+                    { 2, "Manager", "Manager", "Manager", null, 2, null, null, "Manager" },
+                    { 3, "Aleksandar", "Todorov", "atodorov", null, 1, null, null, "atodorov" },
+                    { 4, "Gabriela", "Dimitrova", "gdimitrova", null, 1, null, null, "gdimitrova" },
+                    { 5, "Nadezhda", "Savcheva", "nsavcheva", null, 1, null, null, "nsavcheva" }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProjectTeam_WorkingProjectsProjectId",

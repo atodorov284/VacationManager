@@ -13,7 +13,7 @@ namespace VacationManager.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="CustomDateRange"/> class.
         /// </summary>
-        public CustomDateRange() : base(typeof(DateTime), DateTime.Now.ToString(), DateTime.Now.AddYears(1).ToString())
+        public CustomDateRange() : base(typeof(DateTime), DateTime.Now.AddDays(-1).ToString(), DateTime.Now.AddYears(1).ToString())
         { }
     }
 }

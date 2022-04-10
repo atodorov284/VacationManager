@@ -3,23 +3,32 @@
 
 @{ ViewData["Title"] = "Index";
     Layout = "_Layout";
-    User loggedUser = this.ViewContext.HttpContext.Session.GetObject<User>("loggedUser");
-    }
+    User loggedUser = this.ViewContext.HttpContext.Session.GetObject<User>("loggedUser"); }
+
+@if (loggedUser.Role == 3)
+{
+<p class="btn-primary">
+    
+<a asp-action="Create">Create New</a>
+
+</p>
+}
 
 <h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+
+
+<table class="table-all bordered centered">
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Username)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Password)
-            </th>
+            @if (loggedUser.Role == 3)
+            {
+<th>
+    @Html.DisplayNameFor(model => model.Password)
+</th>            }
             <th>
                 @Html.DisplayNameFor(model => model.FirstName)
             </th>
@@ -42,9 +51,12 @@
     <td>
         @Html.DisplayFor(modelItem => item.Username)
     </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Password)
-    </td>
+    @if (loggedUser.Role == 3)
+    {
+<td>
+    @Html.DisplayFor(modelItem => item.Password)
+</td>}
+
     <td>
         @Html.DisplayFor(modelItem => item.FirstName)
     </td>
@@ -58,14 +70,14 @@
         @Html.DisplayFor(modelItem => item.Team)
     </td>
     <td>
-        <a asp-action="Details" asp-route-id="@item.UserId">Details</a>
-        @if(loggedUser.Role == 3)
-                {
-            <a asp-action="Edit" asp-route-id="@item.UserId">Edit</a>
-            <a asp-action="Delete" asp-route-id="@item.UserId">Delete</a>
-                }
-        
+        <a class="redirect" asp-action="Details" asp-route-id="@item.UserId">Details</a>
+        @if (loggedUser.Role == 3)
+        {
+<a class="redirect" asp-action="Edit" asp-route-id="@item.UserId">Edit</a>
+                    <a class="redirect" asp-action="Delete" asp-route-id="@item.UserId">Delete</a>}
+
     </td>
-</tr>}
+</tr>
+}
     </tbody>
 </table>

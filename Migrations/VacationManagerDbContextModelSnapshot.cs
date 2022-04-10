@@ -180,6 +180,42 @@ namespace VacationManager.Migrations
                             Password = "CEOpass",
                             Role = 3,
                             Username = "CEO"
+                        },
+                        new
+                        {
+                            UserId = 2,
+                            FirstName = "Manager",
+                            LastName = "Manager",
+                            Password = "Manager",
+                            Role = 2,
+                            Username = "Manager"
+                        },
+                        new
+                        {
+                            UserId = 3,
+                            FirstName = "Aleksandar",
+                            LastName = "Todorov",
+                            Password = "atodorov",
+                            Role = 1,
+                            Username = "atodorov"
+                        },
+                        new
+                        {
+                            UserId = 4,
+                            FirstName = "Gabriela",
+                            LastName = "Dimitrova",
+                            Password = "gdimitrova",
+                            Role = 1,
+                            Username = "gdimitrova"
+                        },
+                        new
+                        {
+                            UserId = 5,
+                            FirstName = "Nadezhda",
+                            LastName = "Savcheva",
+                            Password = "nsavcheva",
+                            Role = 1,
+                            Username = "nsavcheva"
                         });
                 });
 
